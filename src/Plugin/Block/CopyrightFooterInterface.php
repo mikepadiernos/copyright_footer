@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\copyright_footer\Plugin\Block;
+namespace Drupal\copyright_footer_canvas\Plugin\Block;
 
 /**
  * Defines the contract for the Copyright Footer block plugin.

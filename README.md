@@ -1,4 +1,4 @@
-# Copyright Footer
+# Copyright Footer (Canvas Compatible)
 
 A Copyright Footer module provides a block for a Copyright © footer.
 You can configure the start year, organization, and version, and the current

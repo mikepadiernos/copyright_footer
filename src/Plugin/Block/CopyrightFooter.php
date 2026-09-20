@@ -1,10 +1,10 @@
 <?php
 
-namespace Drupal\copyright_footer\Plugin\Block;
+namespace Drupal\copyright_footer_canvas\Plugin\Block;
 
 /**
  * @file
- * Contains \Drupal\copyright_footer\Plugin\Block\CopyrightFooter.
+ * Contains \Drupal\copyright_footer_canvas\Plugin\Block\CopyrightFooter.
  */
 
 use Drupal\Component\Datetime\TimeInterface;
@@ -29,10 +29,10 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 #[Block(
   id: 'copyright_footer',
-  admin_label: new TranslatableMarkup('Copyright Footer'),
+  admin_label: new TranslatableMarkup('Copyright Footer (canvas)'),
   category: new TranslatableMarkup('Custom'),
 )]
-class CopyrightFooter extends BlockBase implements ContainerFactoryPluginInterface, CopyrightFooterInterface {
+class CopyrightFooter extends BlockBase implements ContainerFactoryPluginInterface, \Drupal\copyright_footer_canvas\Plugin\Block\CopyrightFooterInterface {
 
   /**
    * Constructs a CopyrightFooter block.
@@ -83,13 +83,14 @@ class CopyrightFooter extends BlockBase implements ContainerFactoryPluginInterfa
     return [
       'organization_name' => '',
       'organization_url' => NULL,
+      'all_rights_reserved' => FALSE,
       'all_rights_reserved_position' => '',
       'year_origin' => '',
       'year_to_date' => '',
       'version' => '',
       'version_url' => NULL,
       'copyright_format' => '',
-      'label_display' => FALSE,
+      'label_display' => '0',
     ] + parent::defaultConfiguration();
   }
 
