@@ -163,6 +163,7 @@ class CopyrightFooter extends BlockBase implements ContainerFactoryPluginInterfa
     $form['all_rights_reserved_position'] = [
       '#type' => 'radios',
       '#title' => $this->t('Display "All Rights Reserved."'),
+      '#value_callback' => [static::class, 'allRightsReservedPositionValueCallback'],
       '#options' => [
         self::ALL_RIGHTS_RESERVED_POSITION_NONE => $this->t('Do not display'),
         self::ALL_RIGHTS_RESERVED_POSITION_ORGANIZATION => $this->t('After the organization name'),
@@ -453,6 +454,21 @@ class CopyrightFooter extends BlockBase implements ContainerFactoryPluginInterfa
     ], TRUE)
       ? $position
       : self::ALL_RIGHTS_RESERVED_POSITION_NONE;
+  }
+
+  /**
+   * Normalizes radios input before Form API validates allowed values.
+   *
+   * Canvas may submit the literal string "undefined" for untouched radios.
+   */
+  public static function allRightsReservedPositionValueCallback(array &$element, mixed $input, FormStateInterface $form_state): mixed {
+    if ($input === FALSE) {
+      return $element['#default_value'] ?? self::ALL_RIGHTS_RESERVED_POSITION_NONE;
+    }
+
+    return $input === 'undefined'
+      ? self::ALL_RIGHTS_RESERVED_POSITION_NONE
+      : $input;
   }
 
   /**

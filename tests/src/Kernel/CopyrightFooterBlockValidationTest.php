@@ -174,6 +174,13 @@ class CopyrightFooterBlockValidationTest extends KernelTestBase {
       'Custom copyright format',
       (string) $form['copyright_format']['#title'],
     );
+
+    $value = CopyrightFooter::allRightsReservedPositionValueCallback(
+      $form['all_rights_reserved_position'],
+      'undefined',
+      new FormState(),
+    );
+    $this->assertSame('none', $value);
   }
 
   /**
